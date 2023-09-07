@@ -17,6 +17,8 @@ import commons
 import cosface_loss
 import augmentations
 from cosplace_model import cosplace_network
+#line 19 must be commented and line 21 must be uncommented for training the model using the mixVPR pipeline
+from cosplace_model import mixVPRcosplace_network
 from datasets.test_dataset import TestDataset
 from datasets.train_dataset import TrainDataset
 from datasets.targetdomain_dataset import TargetDataset
