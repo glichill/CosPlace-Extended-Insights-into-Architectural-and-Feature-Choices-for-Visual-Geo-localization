@@ -8,7 +8,7 @@ import torch.nn as nn
 import numpy as np
 import torch.nn.functional as F
 
-from mixVPRcosplace_model.layers import Flatten, L2Norm, GeM, FeatureMixerLayer, MixVPR
+from cosplace_model.mixVPRlayers import Flatten, L2Norm, GeM, FeatureMixerLayer, MixVPR
 
 
 class ResNet(nn.Module):
