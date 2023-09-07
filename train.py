@@ -18,7 +18,7 @@ import cosface_loss
 import augmentations
 from cosplace_model import cosplace_network
 #line 19 must be commented and line 21 must be uncommented for training the model using the mixVPR pipeline
-from cosplace_model import mixVPRcosplace_network
+#from cosplace_model import mixVPRcosplace_network
 from datasets.test_dataset import TestDataset
 from datasets.train_dataset import TrainDataset
 from datasets.targetdomain_dataset import TargetDataset
@@ -38,7 +38,7 @@ logging.info(f"The outputs are being saved in {args.output_folder}")
 #### Model
 model = cosplace_network.GeoLocalizationNet(args.backbone, args.fc_output_dim)
 
-### line 37 must be commented and line 40 and 41 must be uncommented for training the model using mixVPR as aggregation pipeline
+### line 39 must be commented and line 42 and 43 must be uncommented for training the model using mixVPR as aggregation pipeline
 #resnet_backbone = mixVPRcosplace_network.ResNet(model_name="resnet18", pretrained=True, layers_to_freeze=2, layers_to_crop=[4])
 #model = mixVPRcosplace_network.GeoLocalizationNet(resnet_backbone, resnet_backbone.out_channels)
 
