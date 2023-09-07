@@ -8,16 +8,8 @@ import torch.nn as nn
 import numpy as np
 import torch.nn.functional as F
 
-from cosplace_model.layers import Flatten, L2Norm, GeM, FeatureMixerLayer, MixVPR
+from mixVPRcosplace_model.layers import Flatten, L2Norm, GeM, FeatureMixerLayer, MixVPR
 
-# The number of channels in the last convolutional layer, the one before average pooling
-#CHANNELS_NUM_IN_LAST_CONV = {
-    #"ResNet18":512 default if you don't freeze the last four layers
-    #"ResNet50": 2048,
-    #"ResNet101": 2048,
-    #"ResNet152": 2048,
-    #"VGG16": 512,
-#}
 
 class ResNet(nn.Module):
     def __init__(self,
@@ -114,18 +106,10 @@ class GeoLocalizationNet(nn.Module):
         super().__init__()
         #assert backbone in CHANNELS_NUM_IN_LAST_CONV, f"backbone must be one of {list(CHANNELS_NUM_IN_LAST_CONV.keys())}"
         self.backbone=backbone
-        self.fc_output_dim = backbone.out_channels //1024
-       # self.aggregation = nn.Sequential(
-        #    L2Norm(),
-        #    GeM(),
-        #    Flatten(),
-        #    nn.Linear(features_dim, fc_output_dim),
-        #    L2Norm()
-       # )
+        self.fc_output_dim = backbone.out_channels 
+       
         self.aggregation = nn.Sequential(
-            #L2Norm(),
-            MixVPR(in_channels=fc_output_dim, out_channels=fc_output_dim),
-            #L2Norm()
+            MixVPR(in_channels=fc_output_dim, out_channels=fc_output_dim)
         )
     
     def forward(self, x):
