@@ -46,15 +46,6 @@ class GeoLocalizationNet(nn.Module):
                 nn.Linear(fc_output_dim, fc_output_dim),
                 L2Norm()
             )
-        elif aggregation_type == 'MixVPR':
-            self.aggregation = nn.Sequential(
-                L2Norm(),
-                Debug(),
-                MixVPR(in_channels=features_dim),
-                Debug(),
-                Debug(),
-                L2Norm()
-            )
         elif aggregation_type == 'GeM':
             self.aggregation = nn.Sequential(
                 L2Norm(),
