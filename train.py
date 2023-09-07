@@ -36,6 +36,10 @@ logging.info(f"The outputs are being saved in {args.output_folder}")
 #### Model
 model = cosplace_network.GeoLocalizationNet(args.backbone, args.fc_output_dim)
 
+### line 37 must be commented and line 40 and 41 must be uncommented for training the model using mixVPR as aggregation pipeline
+#resnet_backbone = mixVPRcosplace_network.ResNet(model_name="resnet18", pretrained=True, layers_to_freeze=2, layers_to_crop=[4])
+#model = mixVPRcosplace_network.GeoLocalizationNet(resnet_backbone, resnet_backbone.out_channels)
+
 
 # Initialize the domain discriminator and its optimizer if domain adaptation is enabled
 if args.enable_domain_adaptation:
