@@ -67,7 +67,7 @@ criterion = torch.nn.CrossEntropyLoss()
 #Adam Optimizer
 #model_optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
 
-#Optimizer AdamW
+#AdamW Optimizer
 model_optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.wd)
 
 #ASGD Optimizer
