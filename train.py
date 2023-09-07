@@ -71,10 +71,10 @@ def find_elbow(ssds):
 criterion = torch.nn.CrossEntropyLoss()
 
 #Adam Optimizer
-#model_optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
+model_optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
 
 #AdamW Optimizer
-model_optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.wd)
+#model_optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.wd)
 
 #ASGD Optimizer
 #model_optimizer = torch.optim.ASGD(model.parameters(), lr=args.lr, weight_decay=args.wd, alpha=args.al)
@@ -129,9 +129,9 @@ if args.use_netvlad:
 # Each group has its own classifier, which depends on the number of classes in the group
 classifiers = [cosface_loss.MarginCosineProduct(args.fc_output_dim, len(group)) for group in groups]
 
-#classifiers_optimizers = [torch.optim.Adam(classifier.parameters(), lr=args.classifiers_lr) for classifier in classifiers]
+classifiers_optimizers = [torch.optim.Adam(classifier.parameters(), lr=args.classifiers_lr) for classifier in classifiers]
 
-classifiers_optimizers = [torch.optim.AdamW(classifier.parameters(), lr=args.classifiers_lr, weight_decay=args.classifiers_wd) for classifier in classifiers]
+#classifiers_optimizers = [torch.optim.AdamW(classifier.parameters(), lr=args.classifiers_lr, weight_decay=args.classifiers_wd) for classifier in classifiers]
 
 #classifiers_optimizers = [torch.optim.ASGD(classifier.parameters(), lr=args.classifiers_lr, lambd=args.classifiers_lambd, alpha=args.classifiers_al) for classifier in classifiers]
 
