@@ -12,6 +12,7 @@ def parse_arguments(is_training: bool = True):
     parser.add_argument("--L", type=int, default=2, help="_")
     parser.add_argument("--groups_num", type=int, default=8, help="_")
     parser.add_argument("--min_images_per_class", type=int, default=10, help="_")
+    
     # Model parameters
     parser.add_argument("--backbone", type=str, default="ResNet18",
                         choices=["VGG16", "ResNet18", "ResNet50", "ResNet101", "ResNet152","efficientnet_b0.ra_in1k","regnetx_002"], help="_")
@@ -22,6 +23,7 @@ def parse_arguments(is_training: bool = True):
     parser.add_argument('--use_netvlad', action='store_true', help='Enable NetVLAD initialization')                    
     parser.add_argument('--netvlad_clusters', type=int, default=15, help="Number of clusters for NetVLAD layer.") 
     parser.add_argument('--choose_num_cluster',action="store_true", help="Searching for number of cluster with elbow method")                  
+    
     # Training parameters
     parser.add_argument("--use_amp16", action="store_true",
                         help="use Automatic Mixed Precision")
@@ -31,27 +33,35 @@ def parse_arguments(is_training: bool = True):
     parser.add_argument("--batch_size", type=int, default=32, help="_")
     parser.add_argument("--epochs_num", type=int, default=50, help="_")
     parser.add_argument("--iterations_per_epoch", type=int, default=10000, help="_")
-    parser.add_argument("--lr", type=float, default=0.00001, help="_")
-    parser.add_argument("--classifiers_lr", type=float, default=0.01, help="_")
-    parser.add_argument("--wd", type=float, default=0.01, help="_")
+    parser.add_argument("--lr", type=float, default=0.00001, help="_") #0.0001 #0.000005
+    parser.add_argument("--classifiers_lr", type=float, default=0.001, help="_")
+    parser.add_argument("--wd", type=float, default=0.001, help="_") #0.01 #0.0001
     parser.add_argument("--classifiers_wd", type=float, default=0.001, help="_")
+    parser.add_argument("--lambd", type=float, default=0.0001, help="_") # 0.01 / 0.001 / 0.0001
+    parser.add_argument("--classifiers_lambd", type=float, default=0.001, help="_")
+    parser.add_argument("--al", type=float, default=0.75, help="_")
+    parser.add_argument("--classifiers_al", type=float, default=0.75, help="_")
+    
     # Data augmentation
     parser.add_argument("--brightness", type=float, default=0.0, help="_")
     parser.add_argument("--contrast", type=float, default=[1.5, 2.0], help="_")
     parser.add_argument("--hue", type=float, default=0.0, help="_")
     parser.add_argument("--saturation", type=float, default=0.0, help="_")
     parser.add_argument("--random_resized_crop", type=float, default=0.5, help="_")
+    
     # Validation / test parameters
     parser.add_argument("--enable_test_tokyo", action='store_true', help="Testing on tokyo_xs test set")
     parser.add_argument("--infer_batch_size", type=int, default=16,
                         help="Batch size for inference (validating and testing)")
     parser.add_argument("--positive_dist_threshold", type=int, default=25,
                         help="distance in meters for a prediction to be considered a positive")
+    
     # Resume parameters
     parser.add_argument("--resume_train", type=str, default=None,
                         help="path to checkpoint to resume, e.g. logs/.../last_checkpoint.pth")
     parser.add_argument("--resume_model", type=str, default=None,
                         help="path to model to resume, e.g. logs/.../best_model.pth")
+    
     # Other parameters
     parser.add_argument("--device", type=str, default="cuda",
                         choices=["cuda", "cpu"], help="_")
@@ -67,6 +77,7 @@ def parse_arguments(is_training: bool = True):
                         help="When saving preds if all preds are incorrect ")                    
     parser.add_argument("--enable_correct_queries", action="store_true",
                         help="When saving preds if all preds are correct ")   
+    
     # Domain Adaptation parameters
     parser.add_argument("--enable_domain_adaptation", action="store_true",
                         help="Enable domain adaptation using adversarial training")
@@ -74,6 +85,7 @@ def parse_arguments(is_training: bool = True):
                         help="Path of the folder with the target dataset for domain adaptation")
     parser.add_argument("--lambda_adversarial", type=float, default=0.1,
                         help="Weight of the adversarial loss relative to the main task loss")
+    
     # Paths parameters
     parser.add_argument("--dataset_folder", type=str, default=None,
                         help="path of the folder with train/val/test sets")
