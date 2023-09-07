@@ -63,7 +63,15 @@ def find_elbow(ssds):
 
 #### Optimizer
 criterion = torch.nn.CrossEntropyLoss()
+
+#Adam Optimizer
+#model_optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
+
+#Optimizer AdamW
 model_optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.wd)
+
+#ASGD Optimizer
+#model_optimizer = torch.optim.ASGD(model.parameters(), lr=args.lr, weight_decay=args.wd, alpha=args.al)
 
 #### Datasets
 groups = [TrainDataset(args, args.train_set_folder, M=args.M, alpha=args.alpha, N=args.N, L=args.L,
@@ -114,7 +122,13 @@ if args.use_netvlad:
 
 # Each group has its own classifier, which depends on the number of classes in the group
 classifiers = [cosface_loss.MarginCosineProduct(args.fc_output_dim, len(group)) for group in groups]
+
+#classifiers_optimizers = [torch.optim.Adam(classifier.parameters(), lr=args.classifiers_lr) for classifier in classifiers]
+
 classifiers_optimizers = [torch.optim.AdamW(classifier.parameters(), lr=args.classifiers_lr, weight_decay=args.classifiers_wd) for classifier in classifiers]
+
+#classifiers_optimizers = [torch.optim.ASGD(classifier.parameters(), lr=args.classifiers_lr, lambd=args.classifiers_lambd, alpha=args.classifiers_al) for classifier in classifiers]
+
 
 logging.info(f"Using {len(groups)} groups")
 logging.info(f"The {len(groups)} groups have respectively the following number of classes {[len(g) for g in groups]}")
