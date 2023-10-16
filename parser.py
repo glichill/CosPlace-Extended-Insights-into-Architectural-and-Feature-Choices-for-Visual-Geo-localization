@@ -33,6 +33,7 @@ def parse_arguments(is_training: bool = True):
     parser.add_argument("--batch_size", type=int, default=32, help="_")
     parser.add_argument("--epochs_num", type=int, default=50, help="_")
     parser.add_argument("--iterations_per_epoch", type=int, default=10000, help="_")
+    parser.add_argument("--optimizer", type=str, default='Adam', help="Choose your optimzer: Adam,AdamW or ASGD")
     parser.add_argument("--lr", type=float, default=0.00001, help="_") #0.0001 #0.000005
     parser.add_argument("--classifiers_lr", type=float, default=0.001, help="_")
     parser.add_argument("--wd", type=float, default=0.001, help="_") #0.01 #0.0001
