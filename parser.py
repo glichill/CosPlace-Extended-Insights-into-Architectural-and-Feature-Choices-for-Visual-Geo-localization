@@ -16,10 +16,10 @@ def parse_arguments(is_training: bool = True):
     # Model parameters
     parser.add_argument("--backbone", type=str, default="ResNet18",
                         choices=["VGG16", "ResNet18", "ResNet50", "ResNet101", "ResNet152","efficientnet_b0.ra_in1k","regnetx_002"], help="_")
-    parser.add_argument("--fc_output_dim", type=int, default=7680,
-                        help="Output dimension of the final fully connected layer; 4096 for MixVPR, 7680 for NetVLAD, and 512 for GeM")
-    parser.add_argument("--aggregation_type", type=str, default='NetVLAD',
-                        help="Type of aggregation method: 'NetVLAD', 'MixVPR', or 'GeM'")
+    parser.add_argument("--fc_output_dim", type=int, default=7680, choices=['4096','7680', '512'],
+                        help="Output dimension of the final fully connected layer: 4096 for MixVPR, 7680 for NetVLAD, and 512 for GeM")
+    parser.add_argument("--aggregation_type", type=str, default='NetVLAD',choices=['NetVLAD', 'MixVPR', 'GeM'],
+                        help="Type of aggregation method")
     parser.add_argument('--use_netvlad', action='store_true', help='Enable NetVLAD initialization')                    
     parser.add_argument('--netvlad_clusters', type=int, default=15, help="Number of clusters for NetVLAD layer.") 
     parser.add_argument('--choose_num_cluster',action="store_true", help="Searching for number of cluster with elbow method")                  
