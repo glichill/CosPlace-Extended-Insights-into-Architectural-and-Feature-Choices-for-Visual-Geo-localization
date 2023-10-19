@@ -38,11 +38,33 @@ We explore three final aggregation layers:
 
 Table results demonstrate that MixVPR consistently improves model performance across various recall metrics.
 
+| Aggregator | SF_XS R@1 | SF_XS R@5 | SF_XS R@10 | SF_XS R@20 | Tokyo_XS R@1 | Tokyo_XS R@5 | Tokyo_XS R@10 | Tokyo_XS R@20 |
+|------------|-----------|-----------|------------|------------|--------------|--------------|---------------|---------------|
+| GeM        | 19.1      | 30.4      | 36.2       | 43.1       | 38.1         | 55.9         | 63.5          | 71.4          |
+| NetVLAD    | 22.8      | 39.0      | 44.7       | 51.0       | 36.2         | 55.2         | 64.4          | 72.7          |
+| MixVPR     | 30.9      | 44.4      | 51.8       | 57.4       | 48.9         | 68.9         | 75.9          | 81.6          |
+
+Table: Aggregation results
+
 ### Domain Adaptation (ADDA)
 
 To address domain shift, we've incorporated Adversarial Domain Adaptation (ADDA) with Tokyo_XS and St_Lucia as target domains, while testing on SF_XS. We used the NetVLAD layer as the aggregation layer. Domain labels were assigned to both source and target data, and a domain discriminator network was trained adversarially to minimize domain distribution differences.
 
 Table results show improved model generalization when Tokyo is chosen as the target domain.
+
+| Source Domain | Target Domain | SF_XS Test      |
+|---------------|---------------|-----------------|
+|               |               | R@1: 24.7       |
+| SF_XS         | Tokyo_XS      | R@5: 39.0       |
+| train         | database      | R@10: 46.4      |
+|               |               | R@20: 54.0      |
+|               |               |                 |
+|               |               | R@1: 24.8       |
+| SF_XS         | St_Lucia      | R@5: 38.3       |
+| train         | database      | R@10: 44.2      |
+|               |               | R@20: 51.3      |
+
+Table: Domain Adaptation results
 
 ### Optimizers
 
