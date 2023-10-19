@@ -16,6 +16,7 @@ We've implemented several data augmentation techniques, including:
 - Color jittering
 
 Each technique offers different parameter configurations. Refer to the accompanying table for results.
+
 |                  |     SF_XS     |     Tokyo_XS     |
 |------------------|:-------------:|:----------------:|
 |                  |  R@1  |  R@5  |  R@10  |  R@20  |  R@1  |  R@5  |  R@10  |  R@20  |
