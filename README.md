@@ -17,16 +17,15 @@ We've implemented several data augmentation techniques, including:
 
 Each technique offers different parameter configurations. Refer to the accompanying table for results.
 
-|                  |     SF_XS     |     Tokyo_XS     |
-|------------------|:-------------:|:----------------:|
-|                  |  R@1  |  R@5  |  R@10  |  R@20  |  R@1  |  R@5  |  R@10  |  R@20  |
+|              | SF_XS R@1 | SF_XS R@5 | SF_XS R@10 | SF_XS R@20 | Tokyo_XS R@1 | Tokyo_XS R@5 | Tokyo_XS R@10 | Tokyo_XS R@20 |
+|--------------|:---------:|:---------:|:----------:|:----------:|:------------:|:------------:|:-------------:|:-------------:|
+| Baseline     |   16.3    |   28.1    |    34.0    |    40.1    |     28.9     |     46.0     |      59.0     |      71.1     |
+| Random Horizontal Flip |   15.1    |   27.1    |    32.6    |    37.9    |     27.6     |     51.7     |      61.9     |     72.1  |
+| Gaussian Blur (kernel_size=5, sigma=(0.5,1)) |   14.5    |   25.3    |    32.1    |    38.3    |     26.1     |     49.8     |      60.0     |     70.1  |
+| Color-Jitter with contrast [1.0, 1.5] |   19.7    |   33.0    |    37.9    |    43.6    |     37.8     |     53.7     |      59.0     |     70.2  |
+| Color-Jitter with contrast [1.5, 2.0] |   19.5    |   32.1    |    38.3    |    43.8    |     36.5     |     52.7     |     62.2  |     70.8  |
+| Color-Jitter with contrast [3.0, 4.0] |   16.9    |   30.1    |    35.8    |    41.9    |     30.8     |     49.2     |      54.0     |     66.0  |
 
-| Baseline         | 16.3  | 28.1  |  34.0  |  40.1  | 28.9  | 46.0  | 59.0  | 71.1  |
-| Random Horizontal Flip | 15.1  | 27.1  | 32.6  | 37.9  | 27.6  | 51.7  | 61.9  | **72.1** |
-| Gaussian Blur (kernel_size=5, sigma=(0.5,1)) | 14.5  | 25.3  | 32.1  | 38.3  | 26.1  | 49.8  | 60.0  | 70.1  |
-| Color-Jitter with contrast [1.0, 1.5] | **19.7** | **33.0** | 37.9  | 43.6  | **37.8** | **53.7** | 59.0  | 70.2  |
-| Color-Jitter with contrast [1.5, 2.0] | 19.5  | 32.1  | **38.3** | **43.8** | 36.5  | 52.7  | **62.2** | 70.8  |
-| Color-Jitter with contrast [3.0, 4.0] | 16.9  | 30.1  | 35.8  | 41.9  | 30.8  | 49.2  | 54.0  | 66.0  |
 
 Table: Augmentation results
 
