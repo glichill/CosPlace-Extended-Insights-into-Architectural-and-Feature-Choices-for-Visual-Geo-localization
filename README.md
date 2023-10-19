@@ -68,7 +68,7 @@ Table: Domain Adaptation results
 
 ### Optimizers
 
-In our final set of experiments, we evaluated the performance of the Adam and AdamW optimizers using both the NetVLAD and MixVPR aggregation layers. However, the results did not demonstrate a significant improvement in performance. For detailed optimizer results, please refer to the Report.pdf file.
+In our final set of experiments, we evaluated the performance of the Adam and AdamW optimizers using both the NetVLAD and MixVPR aggregation layers. However, the results did not demonstrate a significant improvement in performance. For detailed optimizer results, please refer to the ReportML_DL.pdf file.
 
 This research extends the CosPlace framework, providing valuable insights into architectural and feature choices for visual geo-localization. Our experiments and findings contribute to a better understanding of how different design decisions impact model performance in this domain.
 
